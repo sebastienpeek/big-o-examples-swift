@@ -96,3 +96,60 @@ func printAllItemsTwice(itemsArray: Array<Any>) {
 printAllItemsTwice(itemsArray: itemsArray)
 
 //: This is O(2n) which we just simplify to O(n)
+
+import Foundation
+
+func printFirstItemThenFirstHalfThenSayHi100Times(itemsArray: Array<Any>) {
+    print(itemsArray[0])
+    
+    let middleIndex = Int(floor((Double(itemsArray.count / 2))))
+    var index = 0
+    
+    while index < middleIndex {
+        print(itemsArray[index])
+        index += 1
+    }
+    
+    for _ in 0 ..< 100 {
+        print("hi")
+    }
+}
+printFirstItemThenFirstHalfThenSayHi100Times(itemsArray: itemsArray)
+
+/*: 
+ The above function is O(1 + n/2 + 100) which we can just call O(n).
+ 
+ But how can we get away with this? For big O notation, we're looking for what happens as n gets arbitrarilty large. As n gets really big, adding 100 or dividing by 2 has a decreasingly significant effect.
+ */
+
+//: ## Drop the less signifcant terms
+
+func printAllNumbersThenAllPairSums(arrayOfNumbers: Array<Int>) {
+    
+    print("these are the numbers:")
+    for number in arrayOfNumbers {
+        print(number)
+    }
+    
+    print("and these are their sums:")
+    for firstNumber in arrayOfNumbers {
+        for secondNumber in arrayOfNumbers {
+            print(firstNumber + secondNumber)
+        }
+    }
+    
+}
+printAllNumbersThenAllPairSums(arrayOfNumbers: itemsArray)
+
+/*: Here the runtime is O(n + n²) which we just call O(n²). Even if it was O(n²/2 + 100n) it would still be O(n²).
+
+ Similarly:
+ 
+ O(n​³ + 50n² + 10000) is equal to O(n​³)
+ O((n + 30) * (n  5)) is equal to O(n²)
+ 
+ Let it sink in, we can get away with this because the less significant terms quickly become less significant as n gets larger.
+ */
+
+
+ 
