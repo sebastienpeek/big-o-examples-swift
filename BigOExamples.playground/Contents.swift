@@ -175,3 +175,44 @@ func contains(haystack: Array<Int>, needle: Int) -> Bool {
 contains(haystack: itemsArray, needle: 1)
 contains(haystack: itemsArray, needle: 10)
  
+/*: ## Space complexity
+ 
+ Sometimes algorithms are optimized for using less memory instead (or in addition to) using less time. Talking about memory cost is similar to talking about time cost. Simply look at the total size (relative to the size of the input) of any new variables we're allocating.
+*/
+
+func sayHiNTimes(n: Int) {
+    for _ in 0 ..< n {
+        print("hi")
+    }
+}
+sayHiNTimes(n: 2)
+
+//: The above function takes O(1) space as we're not allocating any new variables.
+
+func arrayOfHiNTimes(n: Int) -> [String] {
+    var hiArray = [String]()
+    for x in 0 ..< n {
+        hiArray.insert("hi", at: x)
+    }
+    return hiArray
+}
+arrayOfHiNTimes(n: 5)
+
+//: The above function takes O(n) space as the size of the returned array scales with the size of the input.
+
+//: When discussing space complexity, it is usually discussing additional space. So this means don't include the space taken up by any inputs. For example, the below function takes constant space even though the input has n items.
+
+func getLargestItem(itemsArray: Array<Int>) -> Int {
+    var largest = 0
+    for item in itemsArray {
+        if item > largest {
+            largest = item
+        }
+    }
+    
+    return largest
+}
+
+getLargestItem(itemsArray: itemsArray)
+
+//: Sometimes there is a tradeoff between saving time and saving space, decide what you're optimizing for before you start!
