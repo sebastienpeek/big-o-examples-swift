@@ -149,7 +149,29 @@ printAllNumbersThenAllPairSums(arrayOfNumbers: itemsArray)
  O((n + 30) * (n  5)) is equal to O(n²)
  
  Let it sink in, we can get away with this because the less significant terms quickly become less significant as n gets larger.
+
+ ## Big O is usually talking about the "worst case" scenario.
+ 
+ Sometimes the worst case runtime is significantly worse than the best case runtime. For example:
  */
 
 
+func contains(haystack: Array<Int>, needle: Int) -> Bool {
+    
+    for x in 0 ..< haystack.count {
+        print(x)
+        if haystack[x] == needle { return true }
+    }
+    
+    return false
+    
+}
+
+/*: Here we might have 100 items in the haystack, but the first item might be the needle, so then we would just return in 1 iteration of our loop.
+ 
+ We would generally say this is O(n) runtime and the worst case is implied with this. However, we could be more specific and say that the worst case is O(n) and the best case is O(1) runtime.
+ */
+
+contains(haystack: itemsArray, needle: 1)
+contains(haystack: itemsArray, needle: 10)
  
